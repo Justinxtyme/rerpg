@@ -4,7 +4,7 @@ CXX = g++
 # -Wall = enable all warnings
 # -Wextra = extra warnings
 # -std=c++17 = use C++17 standard
-CXXFLAGS = -Wall -Wextra -std=c++17
+CXXFLAGS = -Wall -Wextra -std=c++17 -Werror
 
 # Source files
 SRC = main.cpp char.cpp char_classes.cpp

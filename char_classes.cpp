@@ -14,3 +14,4 @@ std::unordered_map<std::string, std::unordered_map<std::string,int>> load_charac
         {"Archer", {{"strength", 10}, {"dexterity", 12}, {"endurance", 10}, {"base_speed", 10}, {"luck", 10}, {"intelligence", 10}, {"light", 10}, {"dark", 10}, {"focus", 13}, {"presence", 10}}}
     };
 }
+
