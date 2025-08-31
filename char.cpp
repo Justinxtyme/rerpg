@@ -36,9 +36,9 @@ Character::Character(const std::string& name, const std::string& char_class, flo
     this->focus        = attributes["focus"];
     this->presence     = attributes["presence"];
 
-    this->max_hp = base_hp + static_cast<int>(strength * 0.15f);
+    this->max_hp = base_hp + static_cast<int>(strength * 0.20f);
     this->hp = max_hp;
-    this->max_sp = base_sp + static_cast<int>(endurance * 0.15f);
+    this->max_sp = base_sp + static_cast<int>(endurance * 0.25f);
     this->sp = max_sp;
     this->max_mp = base_mp + static_cast<int>(intelligence * 0.20f);
     this->mp = max_mp;
