@@ -1,35 +1,26 @@
 
 hello.o:     file format elf32-i386
 
-
-Disassembly of section .text:
-
-00000000 <main>:
-   0:	8d 4c 24 04          	lea    ecx,[esp+0x4]
-   4:	83 e4 f0             	and    esp,0xfffffff0
-   7:	ff 71 fc             	push   DWORD PTR [ecx-0x4]
-   a:	55                   	push   ebp
-   b:	89 e5                	mov    ebp,esp
-   d:	53                   	push   ebx
-   e:	51                   	push   ecx
-   f:	e8 fc ff ff ff       	call   10 <main+0x10>
-  14:	05 01 00 00 00       	add    eax,0x1
-  19:	83 ec 0c             	sub    esp,0xc
-  1c:	8d 90 00 00 00 00    	lea    edx,[eax+0x0]
-  22:	52                   	push   edx
-  23:	89 c3                	mov    ebx,eax
-  25:	e8 fc ff ff ff       	call   26 <main+0x26>
-  2a:	83 c4 10             	add    esp,0x10
-  2d:	b8 00 00 00 00       	mov    eax,0x0
-  32:	8d 65 f8             	lea    esp,[ebp-0x8]
-  35:	59                   	pop    ecx
-  36:	5b                   	pop    ebx
-  37:	5d                   	pop    ebp
-  38:	8d 61 fc             	lea    esp,[ecx-0x4]
-  3b:	c3                   	ret    
-
-Disassembly of section .text.__x86.get_pc_thunk.ax:
-
-00000000 <__x86.get_pc_thunk.ax>:
-   0:	8b 04 24             	mov    eax,DWORD PTR [esp]
-   3:	c3                   	ret    
+Contents of section .group:
+ 0000 01000000 07000000                    ........        
+Contents of section .text:
+ 0000 8d4c2404 83e4f0ff 71fc5589 e55351e8  .L$.....q.U..SQ.
+ 0010 fcffffff 05010000 0083ec0c 8d900000  ................
+ 0020 00005289 c3e8fcff ffff83c4 10b80000  ..R.............
+ 0030 00008d65 f8595b5d 8d61fcc3           ...e.Y[].a..    
+Contents of section .rodata:
+ 0000 48656c6c 6f2c2057 6f726c64 2e00      Hello, World..  
+Contents of section .text.__x86.get_pc_thunk.ax:
+ 0000 8b0424c3                             ..$.            
+Contents of section .comment:
+ 0000 00474343 3a202841 6c70696e 65203130  .GCC: (Alpine 10
+ 0010 2e332e31 5f676974 32303231 30343234  .3.1_git20210424
+ 0020 29203130 2e332e31 20323032 31303432  ) 10.3.1 2021042
+ 0030 3400                                 4.              
+Contents of section .eh_frame:
+ 0000 14000000 00000000 017a5200 017c0801  .........zR..|..
+ 0010 1b0c0404 88010000 30000000 1c000000  ........0.......
+ 0020 00000000 3c000000 00440c01 00491005  ....<....D...I..
+ 0030 02750042 0f037578 06100302 757c67c1  .u.B..ux....u|g.
+ 0040 0c010041 c341c543 0c040400 10000000  ...A.A.C........
+ 0050 50000000 00000000 04000000 00000000  P...............
