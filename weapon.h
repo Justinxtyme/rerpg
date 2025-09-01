@@ -3,11 +3,24 @@
 #include <string>
 #include <unordered_map>
 
+
+
+enum class WeaponType {
+    Dagger,
+    ShortSword,
+    MediumSword,
+    LongSword,
+    BattleAxe,
+    WarHammer,
+    ShortBow, 
+    LongBow,
+    CrossBow
+};
+
 class Weapon {
 protected:
     std::string name;
-    //maybe weapon_type
-    std::string weapon_type;
+    WeaponType type;
     int damage;
     int weight;
     int base_damage;
@@ -20,7 +33,7 @@ protected:
 public:
     // Basic constructor — keep simple now, fill scaling map later
     Weapon(const std::string& name,
-           const std::string& type,
+           WeaponType type,
            int base_damage,
            int weight,
            float rarity_mod = 1.0f);
@@ -38,57 +51,73 @@ public:
 // Weapon Subclass layers
 class MeleeWeapon : public Weapon {
 public:
+    using Weapon::Weapon;
     virtual ~MeleeWeapon() = default;
 };
 
 class RangedWeapon : public Weapon {
+public:
+    using Weapon::Weapon;
     virtual ~RangedWeapon() = default;
 };
 
 class OneHandedMelee : public MeleeWeapon {
+public:
+    using Weapon::Weapon;
     virtual ~OneHandedMelee() = default;
 };
 
 class TwoHandedMelee : public MeleeWeapon {
+public:
+    using Weapon::Weapon;
     virtual ~TwoHandedMelee() = default;
 
 };
 
 //one handed meleee wepaons
 class Dagger : public OneHandedMelee {
-    
+public:
+    using OneHandedMelee::OneHandedMelee;    
 };
 
 class ShortSword : public OneHandedMelee {
-
+public:
+    using OneHandedMelee::OneHandedMelee;
 };
 
 class MediumSword : public OneHandedMelee {
-
+public:
+    using OneHandedMelee::OneHandedMelee;
 };
 
 //two handed melee weapons
 class LongSword : public TwoHandedMelee {
-
+public:
+    using TwoHandedMelee::TwoHandedMelee;
 };
 
 class BattleAxe : public TwoHandedMelee {
-
+public:
+    using TwoHandedMelee::TwoHandedMelee;
 };
 
 class WarHammer : public TwoHandedMelee {
-
+public:
+    using TwoHandedMelee::TwoHandedMelee;
 };
 
 //ranged weapons
 class ShortBow : public RangedWeapon {
-
+public:
+    using RangedWeapon::RangedWeapon;
 };
 
 class LongBow : public RangedWeapon {
-
+public:
+    using RangedWeapon::RangedWeapon;
 };
 
 class CrossBow : public RangedWeapon {
-
+public:
+    using RangedWeapon::RangedWeapon;
 };
