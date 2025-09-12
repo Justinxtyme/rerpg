@@ -20,11 +20,11 @@ enum class WeaponType {
 class Weapon {
 protected:
     std::string name;
-    WeaponType type;
-    int damage;
-    int weight;
-    int base_damage;
-    float rarity_mod;
+    WeaponType  type;
+    int         damage;
+    int         weight;
+    int         base_damage;
+    float       rarity_mod;
 
     //stores key value pairs, eg "strength": 1.5 "dexterity": 0.7
     std::unordered_map<std::string, float> scaling;
@@ -43,8 +43,7 @@ public:
     // Basic API (subclasses can override)
     virtual int get_damage() const;          // compute final damage (simple for now)
     virtual void print_info() const;
-
-
+   
 
 };
 

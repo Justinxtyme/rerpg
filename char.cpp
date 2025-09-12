@@ -43,8 +43,8 @@ Character::Character(const std::string& name, const std::string& char_class, flo
     this->max_mp = base_mp + static_cast<int>(intelligence * 0.20f);
     this->mp = max_mp;
 
-    this->base_attack = 1;
-    this->attack = base_attack + (strength * 2) + (dexterity * 1);
+    this->base_attack  = 1;
+    this->attack  = base_attack + (strength * 2) + (dexterity * 1);
     this->base_defense = 1;
     this->defense = base_defense + strength + dexterity; // + total_armor_defense
 

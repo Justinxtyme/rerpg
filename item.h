@@ -2,7 +2,7 @@
 #include <string>
 
 class Item {
-private:
+protected:
     std::string name;
     float weight;
 
@@ -13,4 +13,31 @@ public:
     // Accessors
     const std::string& get_name() const { return name; }
     float get_weight() const { return weight; }
+
+    virtual ~Item() = default;
+
+    //basic API
+};
+
+// ITEM SUBCLASS LAYERS
+class Consumable : public Item {
+protected:
+    std::string effect;
+
+public:
+    Consumable(const std::string& name, float weight, const std::string& effect)
+        : Item(name, weight), effect(effect) {}
+    
+    virtual ~Consumable() = default;
+};
+
+
+class KeyItem : public Item {
+protected:
+    std::string effect;
+
+public:
+    KeyItem(const std::string& name, float weight, const std::string& effect)
+        : Item(name, weight), effect(effect) {}
+    virtual ~KeyItem() = default;
 };
