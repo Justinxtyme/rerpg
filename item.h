@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+
 class Item {
 protected:
     std::string name;
@@ -40,4 +41,19 @@ public:
     KeyItem(const std::string& name, float weight, const std::string& effect)
         : Item(name, weight), effect(effect) {}
     virtual ~KeyItem() = default;
+};
+
+
+
+enum class ItemID {
+    Potion,
+    HiPotion,
+    Elixir,
+    // add more here
+};
+
+struct Item {
+    ItemID id;
+    std::string name;  // still keep human-readable
+    float weight;
 };
