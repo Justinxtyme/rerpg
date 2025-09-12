@@ -133,3 +133,9 @@ void Character::move(float dx, float dy) {
     position.x += dx;
     position.y += dy;
 }
+
+// Move character
+void Character::tele(float dx, float dy) {
+    position.x = dx;
+    position.y = dy;
+}

@@ -82,6 +82,8 @@ public:
     void print_info() const;
     
     void move(float dx, float dy);
+    
+    void tele(float dx, float dy); 
 
     void print_spell_list() const;
 
