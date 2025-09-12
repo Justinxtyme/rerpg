@@ -30,6 +30,7 @@ protected:
 
 
 public:
+    // constructor
     Armor(const std::string& name, float weight, 
          ArmorClass armor_class, ArmorType armor_type,
          int base_defense, float rarity_mod = 1.0f, int attribute_bonuses);
