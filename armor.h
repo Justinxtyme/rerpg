@@ -2,21 +2,6 @@
 #include <string>
 
 
-enum class ArmorClass {
-    LightArmor,
-    MediumArmor,
-    HeavyArmor
-};
-
-enum class ArmorType {
-    Head,
-    Chest,
-    Arms,
-    Waist,
-    Legs,
-    Feet
-};
-
 
 class Armor {
 protected:
@@ -37,4 +22,20 @@ public:
       
     virtual ~Armor() = default;
 
+};
+
+
+enum class ArmorClass {
+    LightArmor,
+    MediumArmor,
+    HeavyArmor
+};
+
+enum class ArmorType {
+    Head,
+    Chest,
+    Arms,
+    Waist,
+    Legs,
+    Feet
 };

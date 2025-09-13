@@ -44,15 +44,27 @@ public:
 };
 
 
+enum class ItemCategory { 
+    Consumable, 
+    Weapon, 
+    Armor, 
+    KeyItem 
+};
+
+
 
 enum class ItemID {
+    WeakPotion,
     Potion,
-    HiPotion,
-    Elixir,
+    PotentPotion,
+    ElixirOfStrength,
+    SuperElixir,
+    ElixirOfDefense,
+    PoisonFlask
     // add more here
 };
 
-struct Item {
+struct Item_t {
     ItemID id;
     std::string name;  // still keep human-readable
     float weight;
