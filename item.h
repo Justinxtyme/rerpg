@@ -2,23 +2,39 @@
 #include <string>
 
 
+// Unified enum for ALL items
+enum class ItemID {
+    IronSword,
+    LeatherArmor,
+    WeakPotion,
+    Potion,
+    PotentPotion,
+    ElixirOfStrength,
+    SuperElixir,
+    ElixirOfDefense,
+    PoisonFlask
+    // ...
+};
+
 class Item {
 protected:
+    ItemID id;
     std::string name;
     float weight;
 
 public:
-    // Constructor
-    Item(const std::string& name, float weight) : name(name), weight(weight) {}
-
-    // Accessors
-    const std::string& get_name() const { return name; }
-    float get_weight() const { return weight; }
+    Item(ItemID id, const std::string& name, float weight)
+        : id(id), name(name), weight(weight) {}
 
     virtual ~Item() = default;
 
-    //basic API
-};
+    ItemID get_id() const { return id; }
+    const std::string& get_name() const { return name; }
+    float get_weight() const { return weight; }
+
+    // Every item should at least be able to print info
+    virtual void print_info() const;
+}
 
 // ITEM SUBCLASS LAYERS
 class Consumable : public Item {
@@ -52,17 +68,6 @@ enum class ItemCategory {
 };
 
 
-
-enum class ItemID {
-    WeakPotion,
-    Potion,
-    PotentPotion,
-    ElixirOfStrength,
-    SuperElixir,
-    ElixirOfDefense,
-    PoisonFlask
-    // add more here
-};
 
 struct Item_t {
     ItemID id;
