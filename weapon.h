@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include "item.h"
 
 
 
@@ -17,7 +18,7 @@ enum class WeaponType {
     CrossBow
 };
 
-class Weapon {
+class Weapon: public Item {
 protected:
     std::string name;
     WeaponType  type;
