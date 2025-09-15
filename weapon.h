@@ -20,10 +20,8 @@ enum class WeaponType {
 
 class Weapon: public Item {
 protected:
-    std::string name;
     WeaponType  type;
     int         damage;
-    int         weight;
     int         base_damage;
     float       rarity_mod;
 
@@ -33,11 +31,10 @@ protected:
 
 public:
     // Basic constructor — keep simple now, fill scaling map later
-    Weapon(const std::string& name,
-           WeaponType type,
-           int base_damage,
-           int weight,
-           float rarity_mod = 1.0f);
+    Weapon(ItemID id, const std::string& name, float weight,
+      WeaponType type, int base_damage, float rarity_mod = 1.0f);
+        // : Item(id, name, weight), type(type),
+        //   base_damage(base_damage), rarity_mod(rarity_mod) {}
 
     virtual ~Weapon() = default; // must be virtual for polymorphic deletion
 

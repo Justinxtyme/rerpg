@@ -1,29 +1,6 @@
 #pragma once
 #include <string>
-
-
-
-class Armor {
-protected:
-    std::string name;
-    float       weight;
-    ArmorClass  armor_class;
-    ArmorType   armor_type;
-    int         base_defense;
-    float       rarity_mod;
-    int         attribute_bonuses; //may need to be a dictionary-like structure
-
-
-public:
-    // constructor
-    Armor(const std::string& name, float weight, 
-         ArmorClass armor_class, ArmorType armor_type,
-         int base_defense, float rarity_mod = 1.0f, int attribute_bonuses);
-      
-    virtual ~Armor() = default;
-
-};
-
+#include "item.h"
 
 enum class ArmorClass {
     LightArmor,
@@ -39,3 +16,23 @@ enum class ArmorType {
     Legs,
     Feet
 };
+
+
+class Armor: public Item {
+protected:
+    ArmorClass  armor_class;
+    ArmorType   armor_type;
+    int         base_defense;
+    float       rarity_mod;
+    int         attr_bonuses; //may need to be a dictionary-like structure
+
+
+public:
+    // constructor
+    Armor(ItemID id, const std::string& name, float weight, ArmorClass armor_class,
+         ArmorType armor_type, int base_defense, float rarity_mod, int attr_bonuses);
+      
+    virtual ~Armor() = default;
+
+};
+

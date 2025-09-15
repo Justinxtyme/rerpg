@@ -10,4 +10,3 @@ std::unordered_map<ItemID, Item> item_db = {
     {ItemID::ElixirOfDefense,  {ItemID::ElixirOfDefense,  "Elixir Of Defense", 1.0f}},
     {ItemID::PoisonFlask,  {ItemID::PoisonFlask,  "Poison Flask", 1.0f}},
 };
-

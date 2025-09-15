@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <vector>
+#include <memory>
 
 
 // Unified enum for ALL items
@@ -15,6 +17,24 @@ enum class ItemID {
     PoisonFlask
     // ...
 };
+
+enum class EquipSlot { 
+    Head, 
+    Chest, 
+    Legs,
+    Waist, 
+    Feet, 
+    RightHand, 
+    LeftHand 
+};
+
+// EQUIPPED ITEMS
+std::vector<std::unique_ptr<Item>> equipment; 
+
+// FOR QUICK EQUIPPED CHECKS
+std::unordered_map<EquipSlot, size_t> slot_map; // maps slot → vector index
+
+
 
 class Item {
 protected:
@@ -34,30 +54,8 @@ public:
 
     // Every item should at least be able to print info
     virtual void print_info() const;
-}
-
-// ITEM SUBCLASS LAYERS
-class Consumable : public Item {
-protected:
-    std::string effect;
-
-public:
-    Consumable(const std::string& name, float weight, const std::string& effect)
-        : Item(name, weight), effect(effect) {}
-    
-    virtual ~Consumable() = default;
 };
 
-
-class KeyItem : public Item {
-protected:
-    std::string effect;
-
-public:
-    KeyItem(const std::string& name, float weight, const std::string& effect)
-        : Item(name, weight), effect(effect) {}
-    virtual ~KeyItem() = default;
-};
 
 
 enum class ItemCategory { 

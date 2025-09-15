@@ -45,25 +45,27 @@ private:
     //Class base attribute structure
     std::unordered_map<std::string, int> attributes;
     
-    // Equipped armor structure
-    std::unordered_map<std::string, Item*> equipped_armor;
-    
-    // Equipped weapons structure
-    std::unordered_map<std::string, Item*> equipped_weapons;
+   
+    struct Inventory {
+        std::unordered_map<ItemID, int> stackables;          // consumables, etc.
+        std::unordered_map<ArmorType, std::unique_ptr<Item>> armor;
+        std::unordered_map<WeaponType, std::unique_ptr<Item>> weapons;
+        std::vector<ItemID> key_items;
+    };
+
+
 
     // Static slot lists: shared among all Characters, avoids stack bloat
-    static const std::vector<std::string> armor_slots;
-    static const std::vector<std::string> weapon_slots;
+    static const std::vector<ArmorType> armor_slots;
+    static const std::vector<WeaponType> weapon_slots;
 
-    // Inventory structure
-    std::unordered_map<std::string, std::unordered_map<std::string,int>> inventory {
-        {"Consumables", {}},
-        {"Weapons", {}},
-        {"Armor", {}}
-    };
-    // Key item structure
-    std::vector<std::string> key_items;
+    // EQUIPPED ITEMS
+    std::vector<std::unique_ptr<Item>> equipment; 
 
+    // FOR QUICK EQUIPPED CHECKS
+    std::unordered_map<EquipSlot, size_t> slot_map; // maps slot → vector index
+
+    
     //list for known spells
     std::vector<std::string> spell_list;
 

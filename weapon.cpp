@@ -1,20 +1,17 @@
 // weapon.cpp
 #include "weapon.h"
 
-Weapon::Weapon(const std::string& name,
-               WeaponType type,
-               int base_damage,
-               int weight,
-               float rarity_mod)
+
+
+
+Weapon::Weapon(ItemID id, const std::string& name, float weight,
+              WeaponType type, int base_damage, float rarity_mod = 1.0f)
+    : Item(id, name, weight), type(type),
+      base_damage(base_damage), rarity_mod(rarity_mod) 
 {
-    this->name        = name;
-    this->type        = type;
-    this->damage      = base_damage;
-    this->weight      = weight;
-    this->base_damage = base_damage;
-    this->rarity_mod  = rarity_mod;
-    // scaling is default-initialized
+    //init scaling map
 }
+
 
 int Weapon::get_damage() const {
     // simple example: base_damage * rarity_mod rounded to int
