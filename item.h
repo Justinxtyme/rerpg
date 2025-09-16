@@ -9,7 +9,7 @@ enum class ItemID {
     OldBroadAxe,
     RustedFellingAxe,
     IronSword,
-    LeatherArmor,
+    LeatherHelm,
     WeakPotion,
     Potion,
     PotentPotion,
