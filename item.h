@@ -6,10 +6,6 @@
 
 // Unified enum for ALL items
 enum class ItemID {
-    OldBroadAxe,
-    RustedFellingAxe,
-    IronSword,
-    LeatherHelm,
     WeakPotion,
     Potion,
     PotentPotion,
@@ -40,7 +36,10 @@ enum class ItemID {
     Iron Boots,
     IronGreaves,
     IronArmplates,
-    IronGirdle
+    IronGirdle,
+    OldBroadAxe,
+    RustedFellingAxe,
+    IronSword
     // ..
 };
 
