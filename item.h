@@ -16,8 +16,32 @@ enum class ItemID {
     ElixirOfStrength,
     SuperElixir,
     ElixirOfDefense,
-    PoisonFlask
-    // ...
+    PoisonFlask,
+    LeatherHelm,
+    LeatherCuirass,
+    LeatherBoots,
+    LeatherLeggings,
+    LeatherVambraces,
+    LeatherBelt,
+    ReinforcedLeatherHelm,
+    ReinforcedLeatherCuirass,
+    ReinforcedLeatherBoots,
+    ReinforcedLeatherLeggings,
+    ReinforcedLeatherVambraces,
+    ReinforcedLeatherBelt,
+    HardenedLeatherHelm,
+    HardenedLeatherCuirass,
+    HardenedLeatherBoots,
+    HardenedLeatherLeggings,
+    HardenedLeatherVambraces,
+    HardenedLeatherBelt,
+    IronVisor,
+    IronChestplate,
+    Iron Boots,
+    IronGreaves,
+    IronArmplates,
+    IronGirdle
+    // ..
 };
 
 enum class EquipSlot { 
