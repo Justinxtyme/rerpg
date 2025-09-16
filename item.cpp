@@ -1,6 +1,7 @@
 //
 #include "item.h"
 #include <unordered_map>
+#include <iostream>
 
 std::unordered_map<ItemID, Item> item_db = {
     {ItemID::Potion,  {ItemID::Potion,  "Potion",  0.5f}},
@@ -10,3 +11,7 @@ std::unordered_map<ItemID, Item> item_db = {
     {ItemID::ElixirOfDefense,  {ItemID::ElixirOfDefense,  "Elixir Of Defense", 1.0f}},
     {ItemID::PoisonFlask,  {ItemID::PoisonFlask,  "Poison Flask", 1.0f}},
 };
+
+void Item::print_info() const {
+    std::cout << "Item: " << name << ", weight: " << weight << "\n";
+}

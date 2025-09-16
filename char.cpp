@@ -1,10 +1,7 @@
 #include "char.h"
 #include "item.h"
 #include <iostream>
-
-// Static vectors definition
-const std::vector<std::string> Character::armor_slots = {"head", "chest", "waist", "legs", "feet", "arms", "right hand", "left hand"};
-const std::vector<std::string> Character::weapon_slots = {"right hand", "left hand"};
+#include "enum_str.h"
 
 // Constructor
 Character::Character(const std::string& name, const std::string& char_class, float x, float y) {
@@ -48,16 +45,10 @@ Character::Character(const std::string& name, const std::string& char_class, flo
     this->base_defense = 1;
     this->defense = base_defense + strength + dexterity; // + total_armor_defense
 
-
-    // Initialize equipment maps with nullptr
-    for (const auto& slot : armor_slots) {
-        equipped_armor[slot] = nullptr;
-    }
-    for (const auto& slot : weapon_slots) {
-        equipped_weapons[slot] = nullptr;
-    }
     
+
 }
+
 
 // Print character info
 void Character::print_info() const {
@@ -70,48 +61,38 @@ void Character::print_info() const {
               << "\n";
 }
 
+
 // Print equipment
 void Character::print_equipment() const {
-    for (const auto& slot : armor_slots) {
-        auto it = equipped_armor.find(slot);
-        if (it != equipped_armor.end() && it->second) {
-            std::cout << slot << " armor: " << it->second->get_name() << "\n";
+    std::cout << "Equipped Armor:\n";
+    for (const auto& [slot, item] : inventory.armor) {
+        std::cout << "  " << to_string(slot) << ": ";
+        if (item) {
+            std::cout << item->get_name() << "\n";
         } else {
-            std::cout << "No " << slot << " armor equipped.\n";
+            std::cout << "(empty)\n";
         }
     }
-    for (const auto& slot : weapon_slots) {
-        auto it = equipped_weapons.find(slot);
-        if (it != equipped_weapons.end() && it->second) {
-            std::cout << slot << " weapon: " << it->second->get_name() << "\n";
+
+    std::cout << "\nEquipped Weapons:\n";
+    for (const auto& [slot, item] : inventory.weapons) {
+        std::cout << "  " << to_string(slot) << ": ";
+        if (item) {
+            std::cout << item->get_name() << "\n";
         } else {
-            std::cout << "No " << slot << " weapon equipped.\n";
+            std::cout << "(empty)\n";
         }
     }
 }
-//print inventory. loop over categories/item key value pairs, then item/count key value pairs within 
+
+//print inventory. 
 void Character::print_inventory() const {
-    for (const auto& category_pair : inventory) {
-        const auto& category = category_pair.first;
-        const auto& items = category_pair.second;
-
-        std::cout << category << ":\n";
-
-        if (items.empty()) {
-            std::cout << "  (empty)\n";
-        } else {
-            for (const auto& item_pair : items) {
-                std::cout << "  " << item_pair.first << " x" << item_pair.second << "\n";
-            }
-        }
-    }
-    // Print key items separately
-    std::cout << "Key Items:\n";
-    if (key_items.empty()) {
-        std::cout << "  (none)\n";
+    std::cout << "Inventory:\n";
+    if (inventory.stackables.empty()) {
+        std::cout << "  (empty)\n";
     } else {
-        for (const auto& key_item : key_items) {
-            std::cout << "  " << key_item << "\n";
+        for (const auto& [id, count] : inventory.stackables) {
+            std::cout << "  " << to_string(id) << " x" << count << "\n";
         }
     }
 }

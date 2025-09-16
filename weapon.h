@@ -1,9 +1,10 @@
 //weapon.h
+#ifndef WEAPON_H
+#define WEAPON_H
 #include <iostream>
 #include <string>
 #include <unordered_map>
 #include "item.h"
-
 
 
 enum class WeaponType {
@@ -18,103 +19,98 @@ enum class WeaponType {
     CrossBow
 };
 
+enum class WeaponSlot {
+    MainHand,
+    OffHand,
+    TwoHand // useful for 2H weapons, can “block out” both slots
+};
+
+enum class Handling {
+    OneHanded,
+    TwoHanded
+};
+
+enum class DamageType {
+    Slashing,
+    Piercing,
+    Blunt,
+    Ranged
+};
+
+enum class Effect {
+    None,
+    Fire,
+    Poison,
+    Bleed,
+    Magic
+};
+
 class Weapon: public Item {
 protected:
     WeaponType  type;
     int         damage;
+    Handling    handling;             // OneHanded or TwoHanded
+    DamageType  dmg_type;            // Slashing, Blunt, etc.
     int         base_damage;
     float       rarity_mod;
 
     //stores key value pairs, eg "strength": 1.5 "dexterity": 0.7
     std::unordered_map<std::string, float> scaling;
-
+    
+    // fire, poison, etc
+    std::vector<Effect> effects;   
 
 public:
     // Basic constructor — keep simple now, fill scaling map later
-    Weapon(ItemID id, const std::string& name, float weight,
-      WeaponType type, int base_damage, float rarity_mod = 1.0f);
+    Weapon(ItemID id,
+           const std::string& name,
+           float weight,
+           WeaponType type,
+           Handling handling,
+           DamageType dmg_type,
+           int base_damage,
+           float rarity_mod = 1.0f,
+           std::vector<Effect> effects = {})
+        : Item(id, name, weight),
+          type(type),
+          handling(handling),
+          dmg_type(dmg_type),
+          base_damage(base_damage),
+          rarity_mod(rarity_mod),
+          effects(std::move(effects)) {}
         // : Item(id, name, weight), type(type),
         //   base_damage(base_damage), rarity_mod(rarity_mod) {}
 
     virtual ~Weapon() = default; // must be virtual for polymorphic deletion
 
     // Basic API (subclasses can override)
-    virtual int get_damage() const;          // compute final damage (simple for now)
-    virtual void print_info() const;
-   
+
+
+    virtual int get_damage() const {
+        return static_cast<int>(base_damage * rarity_mod);
+    }
+
+    virtual bool is_two_handed() const {
+        return handling == Handling::TwoHanded;
+    }
+
+    virtual void print_weapon_info() const {
+        std::cout << name << " (" << base_damage << " dmg, "
+                  << (is_two_handed() ? "Two-Handed" : "One-Handed") << ")\n";
+    }
 
 };
 
-// Weapon Subclass layers
-class MeleeWeapon : public Weapon {
-public:
-    using Weapon::Weapon;
-    virtual ~MeleeWeapon() = default;
-};
+// auto OldBroadAxe = std::make_unique<Weapon>(
+//     ItemID::OldBroadAxe,
+//     "Battle Axe",
+//     12.0f,
+//     WeaponType::BattleAxe,
+//     Handling::TwoHanded,
+//     DamageType::Slashing,
+//     25
+// );
 
-class RangedWeapon : public Weapon {
-public:
-    using Weapon::Weapon;
-    virtual ~RangedWeapon() = default;
-};
 
-class OneHandedMelee : public MeleeWeapon {
-public:
-    using Weapon::Weapon;
-    virtual ~OneHandedMelee() = default;
-};
-
-class TwoHandedMelee : public MeleeWeapon {
-public:
-    using Weapon::Weapon;
-    virtual ~TwoHandedMelee() = default;
-
-};
-
-//one handed meleee wepaons
-class Dagger : public OneHandedMelee {
-public:
-    using OneHandedMelee::OneHandedMelee;    
-};
-
-class ShortSword : public OneHandedMelee {
-public:
-    using OneHandedMelee::OneHandedMelee;
-};
-
-class MediumSword : public OneHandedMelee {
-public:
-    using OneHandedMelee::OneHandedMelee;
-};
-
-//two handed melee weapons
-class LongSword : public TwoHandedMelee {
-public:
-    using TwoHandedMelee::TwoHandedMelee;
-};
-
-class BattleAxe : public TwoHandedMelee {
-public:
-    using TwoHandedMelee::TwoHandedMelee;
-};
-
-class WarHammer : public TwoHandedMelee {
-public:
-    using TwoHandedMelee::TwoHandedMelee;
-};
-
-//ranged weapons
-class ShortBow : public RangedWeapon {
-public:
-    using RangedWeapon::RangedWeapon;
-};
-
-class LongBow : public RangedWeapon {
-public:
-    using RangedWeapon::RangedWeapon;
-};
-
-class CrossBow : public RangedWeapon {
-public:
-    using RangedWeapon::RangedWeapon;
-};
+    
+#endif

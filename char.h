@@ -3,6 +3,10 @@
 #include <unordered_map>
 #include <vector>
 #include "char_classes.h"
+#include "armor.h"
+#include "item.h"
+#include "stacker.h"
+#include "weapon.h"
 
 struct Vector2 {
     float x, y;
@@ -47,24 +51,35 @@ private:
     
    
     struct Inventory {
-        std::unordered_map<ItemID, int> stackables;          // consumables, etc.
+        std::unordered_map<ItemID, int> stackables;
+
+        // Equipped armor keyed by ArmorType
         std::unordered_map<ArmorType, std::unique_ptr<Item>> armor;
-        std::unordered_map<WeaponType, std::unique_ptr<Item>> weapons;
-        std::vector<ItemID> key_items;
+
+        // Equipped weapons keyed by WeaponSlot
+        std::unordered_map<WeaponSlot, std::unique_ptr<Item>> weapons;
+
+        Inventory() {
+            // Armor
+            armor.emplace(ArmorType::Head, nullptr);
+            armor.emplace(ArmorType::Chest, nullptr);
+            armor.emplace(ArmorType::Arms, nullptr);
+            armor.emplace(ArmorType::Waist, nullptr);
+            armor.emplace(ArmorType::Legs, nullptr);
+            armor.emplace(ArmorType::Feet, nullptr);
+
+            // Weapons
+            weapons.emplace(WeaponSlot::MainHand, nullptr);
+            weapons.emplace(WeaponSlot::OffHand, nullptr);
+        }
+
+        // void clear_equipment() {
+        //     for (auto& [slot, item] : armor)   item.reset();
+        //     for (auto& [slot, item] : weapons) item.reset();
+        // }
     };
 
-
-
-    // Static slot lists: shared among all Characters, avoids stack bloat
-    static const std::vector<ArmorType> armor_slots;
-    static const std::vector<WeaponType> weapon_slots;
-
-    // EQUIPPED ITEMS
-    std::vector<std::unique_ptr<Item>> equipment; 
-
-    // FOR QUICK EQUIPPED CHECKS
-    std::unordered_map<EquipSlot, size_t> slot_map; // maps slot → vector index
-
+    Inventory inventory;
     
     //list for known spells
     std::vector<std::string> spell_list;
@@ -73,9 +88,27 @@ private:
     std::vector<std::string> action_log;
 
 
+    // // Static slot lists: shared among all Characters, avoids stack bloat
+    // static const std::vector<ArmorType> armor_slots;
+    // static const std::vector<WeaponType> weapon_slots;
+
+    // EQUIPPED ITEMS
+    //std::vector<std::unique_ptr<Item>> equipment; 
+
+    // FOR QUICK EQUIPPED CHECKS
+    //std::unordered_map<EquipSlot, size_t> slot_map; // maps slot → vector index
+
+    
+
+
 
 public:
     Character(const std::string& name, const std::string& char_class, float x = 0, float y = 0);
+
+    void equip_weapon(std::unique_ptr<Weapon> weapon, WeaponSlot slot) {
+        inventory.weapons[slot] = std::move(weapon);
+    }
+
 
     void print_equipment() const;
 

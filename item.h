@@ -6,6 +6,8 @@
 
 // Unified enum for ALL items
 enum class ItemID {
+    OldBroadAxe,
+    RustedFellingAxe,
     IronSword,
     LeatherArmor,
     WeakPotion,
@@ -28,12 +30,7 @@ enum class EquipSlot {
     LeftHand 
 };
 
-// EQUIPPED ITEMS
-std::vector<std::unique_ptr<Item>> equipment; 
-
-// FOR QUICK EQUIPPED CHECKS
-std::unordered_map<EquipSlot, size_t> slot_map; // maps slot → vector index
-
+ 
 
 
 class Item {

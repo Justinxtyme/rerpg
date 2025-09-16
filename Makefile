@@ -7,7 +7,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -Werror
 
 # Source files
-SRC = main.cpp char.cpp char_classes.cpp
+SRC = main.cpp char.cpp char_classes.cpp item.cpp stack.cpp weapon.cpp armor.cpp
 
 # Object files (replace .cpp with .o)
 OBJ = $(SRC:.cpp=.o)
