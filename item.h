@@ -33,13 +33,21 @@ enum class ItemID {
     HardenedLeatherBelt,
     IronVisor,
     IronChestplate,
-    Iron Boots,
+    IronBoots,
     IronGreaves,
     IronArmplates,
     IronGirdle,
+    RustedDagger,
+    RustedStraightSword,
+    RustedGreatSword,
     OldBroadAxe,
     RustedFellingAxe,
-    IronSword
+    IronDagger,
+    IronStraigtSword,
+    IronGreatsword,
+    BloodStone
+    
+    
     // ..
 };
 
