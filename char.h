@@ -123,3 +123,16 @@ public:
     void print_spell_list() const;
 
 };
+
+enum class Attribute {
+    Strength,
+    Dexterity,
+    Endurance,
+    Base_speed,
+    Luck,
+    Intelligence,
+    Light,
+    Dark,
+    Focus,
+    Presence
+};

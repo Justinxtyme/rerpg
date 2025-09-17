@@ -1,9 +1,31 @@
 #include "char.h"
 #include "item.h"
 #include "weapon.h"
+#include "armor.h"
 #include <iostream>
 
-
+int init_items(void) {
+    auto oldbroadaxe = std::make_unique<Weapon>(
+            ItemID::OldBroadAxe,
+            "Battle Axe",
+            12.0f,
+            WeaponType::BattleAxe,
+            Handling::TwoHanded,
+            DamageType::Slashing,
+            25
+        );
+    auto cloth_robe = std::make_unique<Armor>(
+            ItemID::ClothRobe,
+            "Cloth Robe",
+            2.0f,
+            ArmorClass::LightArmor,
+            ArmorType::Chest,
+            2,
+            1.0f,
+            { {Attribute::Intelligence, 5} }
+        );    
+    
+}
 
 int main() {
     try { 

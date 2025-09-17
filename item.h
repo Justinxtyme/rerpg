@@ -93,7 +93,7 @@ enum class ItemID {
     EldritchMysticSandals,
     EldritchMysticTrousers,
     EldritchMysticGloves,
-    EldritchMysticSash
+    EldritchMysticSash,
     
     RustedDagger,
     RustedStraightSword,
@@ -103,7 +103,7 @@ enum class ItemID {
     IronDagger,
     IronStraightSword,
     IronGreatsword,
-    BloodStone
+    BloodStone,
     
     SteelVisor,
     SteelChestplate,
