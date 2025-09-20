@@ -7,6 +7,7 @@
 #include "item.h"
 #include "stacker.h"
 #include "weapon.h"
+#include "power.h"
 
 struct Vector2 {
     float x, y;
@@ -109,6 +110,9 @@ public:
         inventory.weapons[slot] = std::move(weapon);
     }
 
+    void equip_armor(std::unique_ptr<Armor> armor, ArmorType armortype) {
+        inventory.armor[armortype] = std::move(armor);
+    }
 
     void print_equipment() const;
 

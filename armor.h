@@ -1,8 +1,11 @@
 #pragma once
+
 #include <string>
 #include <unordered_map>
 #include "item.h"
-#include "char.h"
+//#include "char.h"
+#include "power.h"
+
 
 enum class ArmorClass {
     LightArmor,
@@ -27,8 +30,7 @@ protected:
     int         base_defense;
     float       rarity_mod;
     
-    // attribute/integer pairs for bonuses given to attr
-    std::unordered_map<Attribute, int> attr_bonuses;
+    std::vector<Ability> abilities;
 
 
 
@@ -37,11 +39,10 @@ public:
     // Armor(ItemID id, const std::string& name, float weight, ArmorClass armor_class,
     //      ArmorType armor_type, int base_defense, float rarity_mod, std::unordered_map<Attribute, int> attr_bonuses);
     Armor(ItemID id, const std::string& name, float weight,
-          ArmorClass armor_class, ArmorType armor_type, int base_defense, float rarity_mod,std::initializer_list<std::pair<const Attribute,int>> bonuses = {})
+          ArmorClass armor_class, ArmorType armor_type, int base_defense, float rarity_mod, std::vector<Ability> abilities = {})
         : Item(id, name, weight), armor_class(armor_class),
           armor_type(armor_type), base_defense(base_defense),
-          rarity_mod(rarity_mod), attr_bonuses(bonuses.begin(), bonuses.end()) // <-- copy initializer_list into unordered_map
-          {}
+          rarity_mod(rarity_mod), abilities(std::move(abilities)) {}
     
     virtual ~Armor() = default;
 
