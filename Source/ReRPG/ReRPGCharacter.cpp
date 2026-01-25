@@ -185,12 +185,12 @@ void AReRPGCharacter::Attack()
 
 void AReRPGCharacter::DoAttack()
 {
-	if (bIsAttacking)
-	{
-		CachedAttackInputTime = GetWorld()->GetTimeSeconds();
-	
-		return;
-	}
+	// if (bIsAttacking)
+	// {
+	// 	CachedAttackInputTime = GetWorld()->GetTimeSeconds();
+	//
+	// 	return;
+	// }
 
 	Attack();
 }

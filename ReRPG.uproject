@@ -39,6 +39,14 @@
 		{
 			"Name": "GeneSplicer",
 			"Enabled": false
+		},
+		{
+			"Name": "GizmoFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "GizmoEdMode",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [
